@@ -14,7 +14,7 @@ spec:
         run: mynginx
     spec:
       containers:
-      - image: nginx
+      - image: hans9102/frontapp:1.0
         name: mynginx
         ports:
         - containerPort: 80

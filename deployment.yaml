@@ -1,21 +1,45 @@
----
+# ---
+# apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: mynginx
+# spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      run: mynginx
+#  template:
+#    metadata:
+#      labels:
+#        run: mynginx
+#    spec:
+#      containers:
+#      - image: hans9102/frontapp:1.0
+#        name: mynginx
+#        ports:
+#        - containerPort: 80
+#---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mynginx
+  name: node-deployment
+  labels:
+    app: node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: mynginx
+      app: node
   template:
     metadata:
       labels:
-        run: mynginx
+        app: node
     spec:
       containers:
-      - image: hans9102/frontapp:1.0
-        name: mynginx
+      - name: Api-server
+        image: hans9102/backapp:1.0
         ports:
-        - containerPort: 80
----
+        - containerPort: 8080
+      - name: DB
+        image: mongo

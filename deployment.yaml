@@ -37,9 +37,9 @@ spec:
         app: node
     spec:
       containers:
-      - name: Api-server
+      - name: api-server
         image: hans9102/backapp:1.0
         ports:
         - containerPort: 8080
-      - name: DB
+      - name: db
         image: mongo

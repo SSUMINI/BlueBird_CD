@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bluebird
+spec:
+  selector:
+    matchLabels:
+      app: bluebird
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: bluebird
+    spec:
+      containers:
+      - name: bluebird
+        image: sms0430/bluebird:v2.0
+        ports:
+        - containerPort: 8080

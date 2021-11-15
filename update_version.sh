@@ -3,6 +3,6 @@ TAG_NAME=$(wget -q https://registry.hub.docker.com/v1/repositories/sms0430/blueb
 
 echo $TAG_NAME
 
-#sed -i "22s/mywebapp.*$/mywebapp:$TAG_NAME/g" deploy.yaml
+sed -i "22s/bluebird.*$/bluebird:$TAG_NAME/g" deploy.yaml
 
 exit 0

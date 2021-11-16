@@ -23,8 +23,6 @@ spec:
             value: "$(PROTOCOL)://$(BACK_SERVICE_HOST):$(BACK_SERVICE_PORT)"
         ports:
         - containerPort: 80
-        command: ["/bin/echo"]
-        args: ["$(BACK_SERVICE_HOST)", "$(BACK_SERVICE_PORT)"]
 ---
 
 apiVersion: v1

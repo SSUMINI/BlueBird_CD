@@ -17,12 +17,14 @@ spec:
       - name: front
         image: hans9102/frontapp:1.0
         env:
+          - name: PROTOCOL
+            value: "https"
           - name: REACT_APP_API_SERVER_URL
-            value: "TCP://$(BACK_SERVICE_IP):$(BACK_SERVICE_PORT)"
-          - name: ENV
-            value: "env_test"
+            value: "$(PROTOCOL)://$(BACK_SERVICE_HOST):$(BACK_SERVICE_PORT)"
         ports:
         - containerPort: 80
+        command: ["/bin/echo"]
+        args: ["$(BACK_SERVICE_HOST)", "$(BACK_SERVICE_PORT)"]
 ---
 
 apiVersion: v1

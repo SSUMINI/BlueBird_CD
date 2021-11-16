@@ -18,7 +18,7 @@ spec:
         image: hans9102/frontapp:1.0
         env:
           - name: REACT_APP_API_SERVER_URL
-            value: BACK_PORT
+            value: "http://localhost:3000"
         ports:
         - containerPort: 80
 ---

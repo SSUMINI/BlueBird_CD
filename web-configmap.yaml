@@ -4,4 +4,4 @@ metadata:
     name: web-config
 data:
     web.properties: |
-        window.API_URL= "https://$(BACK_SERVICE_HOST):$(BACK_SERVICE_PORT)"
+        window.API_URL= "http://"$(BACK_SERVICE_HOST) ":"$(BACK_SERVICE_PORT)

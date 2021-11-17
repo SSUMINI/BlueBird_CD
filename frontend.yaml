@@ -18,8 +18,6 @@ spec:
           image: hans9102/frontapp:1.0
           ports:
             - containerPort: 80
-          cmd: ["bin/echo"]
-          arg: ["~~~"]
           volumeMounts:
                       #override config.js file
                       - name: config

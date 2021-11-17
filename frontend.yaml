@@ -14,15 +14,21 @@ spec:
         app: front
     spec:
       containers:
-      - name: front
-        image: hans9102/frontapp:1.0
-        env:
-          - name: PROTOCOL
-            value: "https"
-          - name: REACT_APP_API_SERVER_URL
-            value: "$(PROTOCOL)://$(BACK_SERVICE_HOST):$(BACK_SERVICE_PORT)"
-        ports:
-        - containerPort: 80
+        - name: front
+          image: hans9102/frontapp:1.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config
+              mountPath: "/usr/share/nginx/html/config.js"
+              subPath: "config.js"
+      volumes:
+        - name: config
+            configMap:
+              name: web-config
+              items:
+                - key: "web.properties"
+                  path: "config.js"
 ---
 
 apiVersion: v1

@@ -4,4 +4,4 @@ metadata:
     name: web-config
 data:
     web.properties: |
-        window.API_URL= "$(BACK_SERVICE_HOST)"
+        window.API_URL= back

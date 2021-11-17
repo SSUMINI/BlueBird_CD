@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: hans9102/frontapp:1.0
+          image: hans9102/frontapp:2.0
           ports:
             - containerPort: 80
           volumeMounts:

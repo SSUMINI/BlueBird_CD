@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: hans9102/frontapp:1.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+                      #override config.js file
+                      - name: config
+                        mountPath: /usr/share/nginx/html/config.js
+                        subPath: config.js
+      volumes:
+                - name: config
+                  configMap:
+                      name: web-config
+                      items:
+                          - key: web.properties
+                            path: config.js
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:                                                                                                                                                         
+  name: front                                                                                                                                                     
+spec:                                                                                                                                                             
+  type: LoadBalancer                                                                                                                                              
+  ports:                                                                                                                                                          
+  - port: 80                                                                                                                                                      
+    protocol: TCP                                                                                                                                                 
+    targetPort: 80                                                                                                                                                
+  selector:                                                                                                                                                       
+    app: front                                                                                                                                                    
+---           
+

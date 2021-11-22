@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back
+spec:
+#  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: back
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  labels:
+    app: back                                                                                                                                                          
+spec:
+  replicas: 1                                                                                                                                                               
+  selector:
+    matchLabels:                                                                                                                                                            
+      app: back                                                                                                                                                           
+  template:
+    metadata:                                                                                                                                                               
+      labels:                                                                                                                                                               
+        app: back                                                                                                                                                          
+    spec:
+      containers:                                                                                                                                                           
+      - name: back                                                                                                                                                    
+        image: hans9102/backapp:3.0                                                                                                                                         
+        ports:                                                                                                                                                              
+        - containerPort: 3000                                                                                                                                               
+      - name: db                                                                                                                                                          
+        image: mongo

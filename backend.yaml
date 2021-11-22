@@ -31,7 +31,7 @@ spec:
     spec:
       containers:                                                                                                                                                           
       - name: back                                                                                                                                                    
-        image: hans9102/backapp:1.0                                                                                                                                         
+        image: hans9102/backapp:2.0                                                                                                                                         
         ports:                                                                                                                                                              
         - containerPort: 3000                                                                                                                                               
       - name: db                                                                                                                                                          

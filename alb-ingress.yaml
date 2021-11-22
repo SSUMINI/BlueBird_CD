@@ -6,6 +6,7 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
+    external-dns.alpha.kubernetes.io/hostname: minseok433.shop
 spec:
   rules:
     - host: bluebird.minseok433.shop 

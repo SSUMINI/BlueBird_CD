@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: back
 spec:
-#  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 80
     protocol: TCP
@@ -31,7 +31,7 @@ spec:
     spec:
       containers:                                                                                                                                                           
       - name: back                                                                                                                                                    
-        image: hans9102/backapp:3.0                                                                                                                                         
+        image: sms0430/backapp:3.0                                                                                                                                         
         ports:                                                                                                                                                              
         - containerPort: 3000                                                                                                                                               
       - name: db                                                                                                                                                          

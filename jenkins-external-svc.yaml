@@ -1,0 +1,8 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins-external-svc
+  namespace: bluebird
+spec:
+  type: ExternalName
+  externalName: jenkins.jenkins.svc.cluster.local

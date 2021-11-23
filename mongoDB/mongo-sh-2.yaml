@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sh2-mongo
+  labels:
+    app: sh2-mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27018
+  selector:
+    app: sh2-mongo
+  clusterIP: None
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sh2-mongo
+spec:
+  selector:
+    matchLabels:
+      app: sh2-mongo
+  serviceName: "sh2-mongo"
+  replicas: 3
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app: sh2-mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app"
+                operator: In
+                values:
+                - sh2-mongo
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: sh2-mongo
+        image: mongo
+        command: ["mongod", "--shardsvr", "--bind_ip_all", "--replSet", "rs1", "--port", "27018"]
+        ports:
+        - containerPort: 27018
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: mongo-storage
+      resources:
+        requests:
+          storage: 33Gi

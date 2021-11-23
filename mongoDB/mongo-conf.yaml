@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: conf-mongo
+  labels:
+    app: conf-mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27019
+  selector:
+    app: conf-mongo
+  clusterIP: None
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: conf-mongo
+spec:
+  selector:
+    matchLabels:
+      app: conf-mongo
+  serviceName: "conf-mongo"
+  replicas: 3
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app: conf-mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app"
+                operator: In
+                values:
+                - conf-mongo
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: conf-mongo
+        image: mongo
+        command: ["mongod","--configsvr", "--bind_ip_all", "--replSet", "conf-replica", "--port", "27019" ]
+
+        ports:
+        - containerPort: 27019
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: mongo-storage
+      resources:
+        requests:
+          storage: 11Gi

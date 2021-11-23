@@ -6,5 +6,5 @@ data:
     web.properties: |
         window.API_URL= back
     PORT: "3000"
-    URL: mongodb://mongo-0.mongo:27017/mongos?readPreference=secondaryPreferred
+    URL: mongodb://mongo-0.mongo:27017/bluebird?readPreference=secondaryPreferred
     

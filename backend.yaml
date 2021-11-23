@@ -44,6 +44,6 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: web-config
-                key: MONGO_URL                                                                                                                                            
+                key: URL                                                                                                                                            
       - name: db                                                                                                                                                          
         image: mongo

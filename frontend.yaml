@@ -18,18 +18,6 @@ spec:
           image: gkstnals24/frontapp:5.0
           ports:
             - containerPort: 80
-          volumeMounts:
-                      #override config.js file
-                      - name: config
-                        mountPath: /usr/share/nginx/html/config.js
-                        subPath: config.js
-      volumes:
-                - name: config
-                  configMap:
-                      name: web-config
-                      items:
-                          - key: web.properties
-                            path: config.js
 
 ---
 

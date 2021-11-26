@@ -4,5 +4,5 @@ metadata:
     name: web-config
 data:
     PORT: "3000"
-    URL: mongodb://mongo-0.mongo:27017/bluebird?readPreference=secondaryPreferred
+    URL: mongodb://mongo-0.mongo:27017/readPreference=secondaryPreferred
     

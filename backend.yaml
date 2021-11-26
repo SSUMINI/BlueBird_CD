@@ -31,7 +31,7 @@ spec:
     spec:
       containers:                                                                                                                                                           
       - name: back                                                                                                                                                    
-        image: gkstnals24/backapp:5.0                                                                                                                                         
+        image: gkstnals24/backapp:8.0                                                                                                                                         
         ports:                                                                                                                                                              
         - containerPort: 3000
         env:

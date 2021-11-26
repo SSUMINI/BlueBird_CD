@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: alb-ingress
+  name: ingress-bluebird
   namespace: bluebird
   annotations:
     kubernetes.io/ingress.class: alb
@@ -21,10 +21,3 @@ spec:
           backend:
             serviceName: front
             servicePort: 80
-            # - host: jenkins.minseok433.shop
-            # http:
-            # paths:
-            # - path: /*
-            # backend:
-            # serviceName: jenkins
-            # servicePort: 80

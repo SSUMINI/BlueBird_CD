@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: gkstnals24/frontapp:5.0
+          image: gkstnals24/frontapp:10.0
           ports:
             - containerPort: 80
 

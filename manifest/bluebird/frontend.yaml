@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front
+  namespace: bluebird
 spec:
   replicas: 1
   selector:
@@ -36,7 +37,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:                                                                                                                                                         
-  name: front                                                                                                                                                     
+  name: front
+  namespace: bluebird
 spec:                                                                                                                                                             
   type: NodePort                                                                                                                                              
   ports:                                                                                                                                                          

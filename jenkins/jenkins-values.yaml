@@ -128,6 +128,7 @@ controller:
   # Jenkins controller service annotations
   serviceAnnotations:
     alb.ingress.kubernetes.io/group.name: "alb-ingress"
+    #external-dns.alpha.kubernetes.io/hostname: jenkins.minseok433.shop
   # Jenkins controller custom labels
   statefulSetLabels: {}
   #   foo: bar

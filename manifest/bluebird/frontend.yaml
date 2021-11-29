@@ -16,21 +16,9 @@ spec:
     spec:
       containers:
         - name: front
-          image: sms0430/frontapp:3.0
+          image: hans9102/frontapp:10.0
           ports:
             - containerPort: 80
-          volumeMounts:
-                      #override config.js file
-                      - name: config
-                        mountPath: /usr/share/nginx/html/config.js
-                        subPath: config.js
-      volumes:
-                - name: config
-                  configMap:
-                      name: web-config
-                      items:
-                          - key: web.properties
-                            path: config.js
 
 ---
 

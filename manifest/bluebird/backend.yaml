@@ -33,8 +33,19 @@ spec:
     spec:
       containers:                                                                                                                                                           
       - name: back                                                                                                                                                    
-        image: hans9102/backapp:3.0                                                                                                                                         
+        image: gkstnals24/backapp:8.0                                                                                                                                         
         ports:                                                                                                                                                              
-        - containerPort: 3000                                                                                                                                               
+        - containerPort: 3000
+        env:
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: web-config
+                key: PORT
+          - name: MONGO_URL
+            valueFrom:
+              configMapKeyRef:
+                name: web-config
+                key: URL                                                                                                                                            
       - name: db                                                                                                                                                          
         image: mongo

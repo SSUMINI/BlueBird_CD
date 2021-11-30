@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: hans9102/frontapp:16.0
+          image: hans9102/frontapp:17.0
           ports:
             - containerPort: 80
 
